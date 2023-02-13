@@ -13,8 +13,6 @@ class SignupApi(Resource):
     def post():
         try:
             body = request.get_json()
-            if body.get('role') == 'ADMIN':
-                return {'error': 'Cannot assign yourself admin'}, 403
             user = User(**body)
             user.hash_password()
             user.save()
